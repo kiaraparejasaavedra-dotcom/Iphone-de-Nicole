@@ -25,7 +25,7 @@
     }
     .nav-btn { background: none; border: none; color: white; font-size: 14px; cursor: pointer; }
 
-    .screen { display: none; flex: 1; flex-direction: column; overflow-y: auto; position: relative; }
+    .screen { display: none; flex: 1; flex-direction: column; overflow-y: auto; position: relative; z-index: 10; }
     .screen.active { display: flex; }
 
     /* HOME SCREEN */
@@ -116,21 +116,21 @@
 
     /* CHAT ABIERTO */
     #screen-chat { background: #abc1d1; }
-    .chat-navbar { background: rgba(255,255,255,0.95); padding: 10px 15px; display: flex; align-items: center; gap: 10px; }
+    .chat-navbar { background: rgba(255,255,255,0.95); padding: 10px 15px; display: flex; align-items: center; gap: 10px; z-index: 20; }
     .back-btn { background: none; border: none; font-size: 16px; color: #007aff; cursor: pointer; }
     .chat-header-user { display: flex; align-items: center; gap: 8px; font-weight: bold; font-size: 15px; }
     .chat-header-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
 
-    .messages-container { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+    .messages-container { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; z-index: 20; }
     .message-bubble { max-width: 75%; padding: 8px 12px; border-radius: 14px; font-size: 14px; word-wrap: break-word; }
     .message-bubble.me { align-self: flex-end; background: #ffe600; color: #000; }
     .message-bubble.them { align-self: flex-start; background: white; color: #000; }
 
-    .chat-input-bar { display: flex; padding: 10px; background: white; gap: 8px; align-items: center; }
-    .chat-input-bar input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 8px 14px; outline: none; font-size: 14px; background: #fafafa; }
-    .send-btn { background: #ffe600; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 16px; display: flex; align-items: center; justify-content: center; }
+    .chat-input-bar { display: flex; padding: 10px; background: white; gap: 8px; align-items: center; z-index: 30; position: relative; }
+    .chat-input-bar input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 10px 14px; outline: none; font-size: 14px; background: #fafafa; color: #000; }
+    .send-btn { background: #ffe600; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 16px; display: flex; align-items: center; justify-content: center; color: #000; }
 
-    .home-bar { width: 130px; height: 4px; background: #000; border-radius: 2px; margin: 6px auto; cursor: pointer; }
+    .home-bar { width: 130px; height: 4px; background: #000; border-radius: 2px; margin: 6px auto; cursor: pointer; z-index: 30; }
   </style>
 </head>
 <body>

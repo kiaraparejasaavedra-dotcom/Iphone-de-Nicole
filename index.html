@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="iphone-container">
-    <!-- Barra de estado superior -->
+    <!-- Barra de estado -->
     <div class="status-bar">
       <span class="time">18:58</span>
       <div class="dynamic-island"></div>
@@ -18,82 +18,112 @@
       </div>
     </div>
 
-    <!-- VISTA 1: Lista de Mensajes/Contactos -->
-    <div id="chats-view" class="view active">
+    <!-- PANTALLA 1: MENSAJES -->
+    <div id="view-messages" class="view active">
       <div class="header">
         <h1>Mensajes</h1>
       </div>
-
       <div class="chat-list">
-        <!-- Contacto 1: Jake -->
+        <!-- Jake -->
         <div class="chat-item" onclick="openChat('Jake 🖤', 'https://i.pinimg.com/736x/5f/8d/71/5f8d7168c1300957fa4fa8211a7a01d6.jpg', [
           { sender: 'them', text: '¿Dónde estás? Quedamos en que me avisabas cuando llegaras.' },
           { sender: 'them', text: 'Vi que Heeseung te comentó la foto... ¿por qué le diste me gusta?' },
-          { sender: 'me', text: 'Jake, tranquilízate, es solo un amigo del grupo.' },
-          { sender: 'them', text: 'No me importa Nicole, no quiero que te juntes a solas con él. Respóndeme ya.' }
+          { sender: 'me', text: 'Jake, tranquilízate, es solo un amigo.' },
+          { sender: 'them', text: 'No me importa Nicole, no quiero que te juntes a solas con él.' }
         ])">
-          <img src="https://i.pinimg.com/736x/5f/8d/71/5f8d7168c1300957fa4fa8211a7a01d6.jpg" class="avatar-img" alt="Jake">
+          <img src="https://i.pinimg.com/736x/5f/8d/71/5f8d7168c1300957fa4fa8211a7a01d6.jpg" class="avatar-img">
           <div class="chat-info">
             <div class="chat-header">
               <span class="name">Jake 🖤</span>
               <span class="date">Ahora</span>
             </div>
-            <p class="last-message">No me importa Nicole, no quiero que te juntes...</p>
+            <p class="last-message">No me importa Nicole, no quiero que...</p>
           </div>
         </div>
 
-        <!-- Contacto 2: Heeseung -->
+        <!-- Heeseung -->
         <div class="chat-item" onclick="openChat('Heeseung 🎧', 'https://i.pinimg.com/736x/53/78/33/537833a6f1969a5316dbcd5a0899aa1d.jpg', [
-          { sender: 'them', text: 'Hola Nicole, ¿pudiste revisar el audio que te mandé?' },
-          { sender: 'me', text: '¡Sí! Quedó genial. Oye, Jake vio tu comentario y está súper celoso jajaja.' },
-          { sender: 'them', text: 'Uff, otra vez... dile que solo estamos trabajando en la canción. Avisame si hay drama.' }
+          { sender: 'them', text: 'Hola Nicole, ¿pudiste revisar el audio?' },
+          { sender: 'me', text: '¡Sí! Quedó genial. Oye, Jake está súper celoso jajaja.' },
+          { sender: 'them', text: 'Uff, otra vez... dile que solo estamos trabajando en la música.' }
         ])">
-          <img src="https://i.pinimg.com/736x/53/78/33/537833a6f1969a5316dbcd5a0899aa1d.jpg" class="avatar-img" alt="Heeseung">
+          <img src="https://i.pinimg.com/736x/53/78/33/537833a6f1969a5316dbcd5a0899aa1d.jpg" class="avatar-img">
           <div class="chat-info">
             <div class="chat-header">
               <span class="name">Heeseung 🎧</span>
               <span class="date">18:30</span>
             </div>
-            <p class="last-message">Uff, otra vez... dile que solo estamos trabajando...</p>
-          </div>
-        </div>
-
-        <!-- Contacto 3: Jungwon -->
-        <div class="chat-item" onclick="openChat('Jungwon 🐈', 'https://i.pinimg.com/736x/8b/6e/8f/8b6e8f49ef2436f6d0f8d07011d13f99.jpg', [
-          { sender: 'them', text: '¿Sigue Jake molestando por lo de Heeseung?' },
-          { sender: 'me', text: 'Sí, está super intenso hoy, no me deja en paz jajaja.' },
-          { sender: 'them', text: 'Ay Nicole, ya sabes cómo es de celoso cuando se trata de ti 🤦‍♂️' }
-        ])">
-          <img src="https://i.pinimg.com/736x/8b/6e/8f/8b6e8f49ef2436f6d0f8d07011d13f99.jpg" class="avatar-img" alt="Jungwon">
-          <div class="chat-info">
-            <div class="chat-header">
-              <span class="name">Jungwon 🐈</span>
-              <span class="date">12:15</span>
-            </div>
-            <p class="last-message">Ay Nicole, ya sabes cómo es de celoso cuando...</p>
+            <p class="last-message">Uff, otra vez... dile que solo estamos...</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- VISTA 2: Conversación Abierta (Chat) -->
-    <div id="conversation-view" class="view">
+    <!-- PANTALLA 2: CONVERSACIÓN ABIERTA -->
+    <div id="view-chat" class="view">
       <div class="chat-navbar">
-        <button class="back-btn" onclick="closeChat()">‹ Mensajes</button>
+        <button class="back-btn" onclick="switchView('view-messages')">‹ Mensajes</button>
         <div class="contact-profile">
-          <img id="chat-avatar" src="" alt="Avatar">
+          <img id="chat-avatar" src="">
           <span id="chat-title" class="contact-name"></span>
         </div>
       </div>
-
-      <div class="messages-container" id="messages-container">
-        <!-- Los mensajes se cargan dinámicamente -->
-      </div>
-
+      <div class="messages-container" id="messages-container"></div>
       <div class="chat-input-bar">
         <input type="text" id="message-input" placeholder="iMessage" onkeypress="handleKeyPress(event)">
         <button class="send-btn" onclick="sendMessage()">⬆</button>
       </div>
+    </div>
+
+    <!-- PANTALLA 3: TELÉFONO / LLAMADAS -->
+    <div id="view-phone" class="view">
+      <div class="header">
+        <h1>Teléfono</h1>
+      </div>
+      <div class="phone-display">
+        <span id="phone-number"></span>
+      </div>
+      <div class="keypad">
+        <div class="key" onclick="pressKey('1')">1</div>
+        <div class="key" onclick="pressKey('2')">2</div>
+        <div class="key" onclick="pressKey('3')">3</div>
+        <div class="key" onclick="pressKey('4')">4</div>
+        <div class="key" onclick="pressKey('5')">5</div>
+        <div class="key" onclick="pressKey('6')">6</div>
+        <div class="key" onclick="pressKey('7')">7</div>
+        <div class="key" onclick="pressKey('8')">8</div>
+        <div class="key" onclick="pressKey('9')">9</div>
+        <div class="key" onclick="pressKey('*')">*</div>
+        <div class="key" onclick="pressKey('0')">0</div>
+        <div class="key" onclick="pressKey('#')">#</div>
+      </div>
+      <div class="call-action">
+        <button class="call-btn" onclick="makeCall()">📞</button>
+      </div>
+    </div>
+
+    <!-- PANTALLA DE LLAMADA EN CURSO -->
+    <div id="view-calling" class="view call-screen">
+      <div class="caller-info">
+        <img id="caller-avatar" src="https://i.pinimg.com/736x/5f/8d/71/5f8d7168c1300957fa4fa8211a7a01d6.jpg">
+        <h2 id="caller-name">Jake 🖤</h2>
+        <p id="call-status">Llamando...</p>
+      </div>
+      <div class="call-controls">
+        <button class="end-call-btn" onclick="endCall()">📵</button>
+      </div>
+    </div>
+
+    <!-- BARRA INFERIOR DE NAVEGACIÓN ESTILO IPHONE -->
+    <div class="tab-bar">
+      <button class="tab-item" onclick="switchView('view-phone')">
+        <span class="tab-icon">📞</span>
+        <span class="tab-label">Teléfono</span>
+      </button>
+      <button class="tab-item active" onclick="switchView('view-messages')">
+        <span class="tab-icon">💬</span>
+        <span class="tab-label">Mensajes</span>
+      </button>
     </div>
 
     <div class="home-indicator"></div>
@@ -101,25 +131,22 @@
 
   <script>
     let currentContactName = '';
+    let dialedNumber = '';
+
+    function switchView(viewId) {
+      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+      document.getElementById(viewId).classList.add('active');
+    }
 
     function openChat(name, photo, messages) {
       currentContactName = name;
-      document.getElementById('chats-view').classList.remove('active');
-      document.getElementById('conversation-view').classList.add('active');
+      switchView('view-chat');
       document.getElementById('chat-title').innerText = name;
       document.getElementById('chat-avatar').src = photo;
 
       const container = document.getElementById('messages-container');
       container.innerHTML = '';
-
-      messages.forEach(msg => {
-        appendMessage(msg.text, msg.sender);
-      });
-    }
-
-    function closeChat() {
-      document.getElementById('conversation-view').classList.remove('active');
-      document.getElementById('chats-view').classList.add('active');
+      messages.forEach(msg => appendMessage(msg.text, msg.sender));
     }
 
     function appendMessage(text, sender) {
@@ -135,45 +162,45 @@
       const input = document.getElementById('message-input');
       const text = input.value.trim();
       if (!text) return;
-
-      // Mensaje enviado por la usuaria
       appendMessage(text, 'me');
       input.value = '';
 
-      // Respuestas automáticas con personalidad
       setTimeout(() => {
         let reply = "No me cambies de tema Nicole.";
         if (currentContactName.includes('Jake')) {
-          const jakeReplies = [
-            "¿Y por qué te tardas tanto en responder? Seguro estás hablando con él 😠",
-            "Sabes perfectamente que no me gusta que seas tan cercana a Heeseung.",
-            "Más te vale que nos veamos al rato. No me dejes en visto.",
-            "Eres mía y no me gusta compartir tu atención con nadie más, ¿entendiste?"
-          ];
-          reply = jakeReplies[Math.floor(Math.random() * jakeReplies.length)];
+          reply = "¿Y por qué te tardas tanto en responder? Seguro estás con él 😠";
         } else if (currentContactName.includes('Heeseung')) {
-          const heeseungReplies = [
-            "Jajaja dile a Jake que se relaje, solo somos amigos.",
-            "Cualquier cosa me avisas Nicole, no te metas en problemas con él.",
-            "Te hablo más tarde para coordinar lo de la música 🎧"
-          ];
-          reply = heeseungReplies[Math.floor(Math.random() * heeseungReplies.length)];
-        } else if (currentContactName.includes('Jungwon')) {
-          const jungwonReplies = [
-            "Jajaja Jake te ama pero se pasa de celoso.",
-            "Si necesitas hablar o desahogarte aquí estoy siempre 🐈",
-            "Cuídate Nicole, no hagas enojar más a tu novio 😜"
-          ];
-          reply = jungwonReplies[Math.floor(Math.random() * jungwonReplies.length)];
+          reply = "Dile a Jake que se relaje, solo somos amigos.";
         }
         appendMessage(reply, 'them');
-      }, 1200);
+      }, 1000);
     }
 
     function handleKeyPress(e) {
-      if (e.key === 'Enter') {
-        sendMessage();
-      }
+      if (e.key === 'Enter') sendMessage();
+    }
+
+    // Funciones del Marcador / Llamadas
+    function pressKey(num) {
+      dialedNumber += num;
+      document.getElementById('phone-number').innerText = dialedNumber;
+    }
+
+    function makeCall() {
+      switchView('view-calling');
+      document.getElementById('caller-name').innerText = dialedNumber || 'Jake 🖤';
+      document.getElementById('call-status').innerText = 'Llamando...';
+
+      // Simular que contesta
+      setTimeout(() => {
+        document.getElementById('call-status').innerText = '00:01 - ¡Hola Nicole! ¿Por qué llamas?';
+      }, 2000);
+    }
+
+    function endCall() {
+      dialedNumber = '';
+      document.getElementById('phone-number').innerText = '';
+      switchView('view-phone');
     }
   </script>
 </body>

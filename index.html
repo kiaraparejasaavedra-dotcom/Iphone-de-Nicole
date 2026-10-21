@@ -28,12 +28,9 @@
     .screen { display: none; flex: 1; flex-direction: column; overflow-y: auto; position: relative; }
     .screen.active { display: flex; }
 
-    /* HOME */
+    /* HOME SCREEN */
     .widgets-container { display: flex; gap: 12px; padding: 15px; }
-    .widget {
-      border-radius: 22px; padding: 12px; flex: 1; height: 135px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-    }
+    .widget { border-radius: 22px; padding: 12px; flex: 1; height: 135px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
     .weather-widget { background: #539be8; color: white; }
     .weather-city { font-size: 14px; font-weight: 600; }
     .weather-temp { font-size: 38px; font-weight: 300; margin: 2px 0; }
@@ -72,7 +69,7 @@
     .camera-bg { background: #999; }
     .safari-bg { background: #007aff; }
 
-    /* CONFIGURACION */
+    /* CONFIGURACIÓN */
     #screen-settings { background: #f2f2f7; padding: 15px; color: #000; }
     .settings-header h1 { font-size: 30px; margin-bottom: 12px; font-weight: 800; }
     .profile-card { background: white; border-radius: 16px; padding: 12px; display: flex; align-items: center; margin-bottom: 15px; }
@@ -119,16 +116,19 @@
 
     /* CHAT ABIERTO */
     #screen-chat { background: #abc1d1; }
-    .chat-navbar { background: rgba(255,255,255,0.9); padding: 10px 15px; display: flex; align-items: center; gap: 15px; }
+    .chat-navbar { background: rgba(255,255,255,0.95); padding: 10px 15px; display: flex; align-items: center; gap: 10px; }
     .back-btn { background: none; border: none; font-size: 16px; color: #007aff; cursor: pointer; }
+    .chat-header-user { display: flex; align-items: center; gap: 8px; font-weight: bold; font-size: 15px; }
+    .chat-header-avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
+
     .messages-container { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-    .message-bubble { max-width: 75%; padding: 8px 12px; border-radius: 14px; font-size: 14px; }
+    .message-bubble { max-width: 75%; padding: 8px 12px; border-radius: 14px; font-size: 14px; word-wrap: break-word; }
     .message-bubble.me { align-self: flex-end; background: #ffe600; color: #000; }
     .message-bubble.them { align-self: flex-start; background: white; color: #000; }
 
-    .chat-input-bar { display: flex; padding: 10px; background: white; gap: 8px; }
-    .chat-input-bar input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 8px 12px; outline: none; }
-    .send-btn { background: #ffe600; border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-weight: bold; }
+    .chat-input-bar { display: flex; padding: 10px; background: white; gap: 8px; align-items: center; }
+    .chat-input-bar input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 8px 14px; outline: none; font-size: 14px; background: #fafafa; }
+    .send-btn { background: #ffe600; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-weight: bold; font-size: 16px; display: flex; align-items: center; justify-content: center; }
 
     .home-bar { width: 130px; height: 4px; background: #000; border-radius: 2px; margin: 6px auto; cursor: pointer; }
   </style>
@@ -152,14 +152,12 @@
     <!-- PANTALLA 1: HOME SCREEN -->
     <div id="screen-home" class="screen active">
       <div class="widgets-container">
-        <!-- Widget Clima -->
         <div class="widget weather-widget">
           <div class="weather-city">Seúl 📍</div>
           <div class="weather-temp">8°</div>
           <div class="weather-desc">☀️ lucidez</div>
         </div>
 
-        <!-- Widget Calendario -->
         <div class="widget calendar-widget">
           <div class="calendar-month">Noviembre</div>
           <div class="calendar-grid">
@@ -174,7 +172,6 @@
         </div>
       </div>
 
-      <!-- Cuadrícula de Aplicaciones -->
       <div class="apps-grid">
         <div class="app-item" onclick="showScreen('kakaotalk')">
           <div class="app-icon kakao-bg">
@@ -200,7 +197,6 @@
         </div>
       </div>
 
-      <!-- Dock Inferior -->
       <div class="dock">
         <div class="app-icon phone-bg" onclick="alert('Llamando a Jake 🖤...')">📞</div>
         <div class="app-icon messages-bg" onclick="showScreen('kakaotalk')">
@@ -267,4 +263,177 @@
             <span class="icon-bg pink">🔊</span>
             <span>Sonido y háptica</span>
           </div>
-          <span
+          <span class="setting-val">›</span>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-left">
+            <span class="icon-bg purple">🌙</span>
+            <span>Modo de enfoque</span>
+          </div>
+          <span class="setting-val">›</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANTALLA 3: KAKAOTALK (CHARLAR) -->
+    <div id="screen-kakaotalk" class="screen">
+      <div class="kakao-header">
+        <h1>Charlar</h1>
+        <div class="kakao-actions">
+          <span>🔍</span>
+          <span>💬⁺</span>
+          <span>⚙️</span>
+        </div>
+      </div>
+
+      <div class="chat-list">
+        <!-- Jake -->
+        <div class="chat-item" onclick="openChat('Jake 🖤', 'https://i.pinimg.com/736x/5f/8d/71/5f8d7168c1300957fa4fa8211a7a01d6.jpg', [
+          { sender: 'them', text: '¿Dónde estás Nicole? Quedamos en que me avisabas al llegar.' },
+          { sender: 'them', text: 'Vi que Heeseung te comentó... ¿por qué le diste me gusta?' },
+          { sender: 'me', text: 'Jake, tranquilízate, es solo un amigo.' },
+          { sender: 'them', text: 'No me importa, no quiero que te juntes a solas con él. Respóndeme ya 😠' }
+        ])">
+          <img src="https://i.pinimg.com/736x/5f/8d/71/5f8d7168c1300957fa4fa8211a7a01d6.jpg" class="avatar-img">
+          <div class="chat-info">
+            <div class="chat-header">
+              <span class="name">Jake 🖤</span>
+              <span class="date">18:57</span>
+            </div>
+            <p class="last-message">No me importa, no quiero que te juntes...</p>
+          </div>
+          <div class="chat-badge">2</div>
+        </div>
+
+        <!-- Heeseung -->
+        <div class="chat-item" onclick="openChat('Heeseung 🎧', 'https://i.pinimg.com/736x/53/78/33/537833a6f1969a5316dbcd5a0899aa1d.jpg', [
+          { sender: 'them', text: 'Hola Nicole, ¿pudiste revisar el audio?' },
+          { sender: 'me', text: '¡Sí! Quedó genial. Oye, Jake está súper celoso jajaja.' },
+          { sender: 'them', text: 'Uff, otra vez... dile que solo estamos trabajando en la música.' }
+        ])">
+          <img src="https://i.pinimg.com/736x/53/78/33/537833a6f1969a5316dbcd5a0899aa1d.jpg" class="avatar-img">
+          <div class="chat-info">
+            <div class="chat-header">
+              <span class="name">Heeseung 🎧</span>
+              <span class="date">18:57</span>
+            </div>
+            <p class="last-message">Uff, otra vez... dile que solo estamos...</p>
+          </div>
+        </div>
+
+        <!-- Jungwon -->
+        <div class="chat-item" onclick="openChat('Jungwon 🐈', 'https://i.pinimg.com/736x/8b/6e/8f/8b6e8f49ef2436f6d0f8d07011d13f99.jpg', [
+          { sender: 'them', text: '¿Sigue Jake molestando por lo de Heeseung?' },
+          { sender: 'me', text: 'Sí, está super intenso hoy jajaja.' },
+          { sender: 'them', text: 'Ay Nicole, ya sabes cómo se pone de celoso contigo 🤦‍♂️' }
+        ])">
+          <img src="https://i.pinimg.com/736x/8b/6e/8f/8b6e8f49ef2436f6d0f8d07011d13f99.jpg" class="avatar-img">
+          <div class="chat-info">
+            <div class="chat-header">
+              <span class="name">Jungwon 🐈</span>
+              <span class="date">16 nov</span>
+            </div>
+            <p class="last-message">Ay Nicole, ya sabes cómo se pone de...</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="kakao-nav">
+        <span>👤</span>
+        <span class="active">💬<div class="dot">12</div></span>
+        <span>✨</span>
+        <span>🛍️</span>
+        <span>•••</span>
+      </div>
+    </div>
+
+    <!-- PANTALLA 4: CHAT ABIERTO -->
+    <div id="screen-chat" class="screen">
+      <div class="chat-navbar">
+        <button class="back-btn" onclick="showScreen('kakaotalk')">‹ Charlar</button>
+        <div class="chat-header-user">
+          <img id="chat-header-img" class="chat-header-avatar" src="">
+          <span id="chat-title"></span>
+        </div>
+      </div>
+      <div class="messages-container" id="messages-container"></div>
+      <div class="chat-input-bar">
+        <input type="text" id="message-input" placeholder="Escribe un mensaje..." onkeypress="handleKeyPress(event)">
+        <button class="send-btn" onclick="sendMessage()">⬆</button>
+      </div>
+    </div>
+
+    <div class="home-bar" onclick="showScreen('home')"></div>
+  </div>
+
+  <script>
+    let historyScreens = ['home'];
+    let currentContactName = '';
+
+    function showScreen(screenId) {
+      if (historyScreens[historyScreens.length - 1] !== screenId) {
+        historyScreens.push(screenId);
+      }
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById('screen-' + screenId).classList.add('active');
+    }
+
+    function goBack() {
+      if (historyScreens.length > 1) {
+        historyScreens.pop();
+        const prev = historyScreens[historyScreens.length - 1];
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById('screen-' + prev).classList.add('active');
+      }
+    }
+
+    function openChat(name, photo, messages) {
+      currentContactName = name;
+      showScreen('chat');
+      document.getElementById('chat-title').innerText = name;
+      document.getElementById('chat-header-img').src = photo;
+
+      const container = document.getElementById('messages-container');
+      container.innerHTML = '';
+      messages.forEach(msg => appendMessage(msg.text, msg.sender));
+    }
+
+    function appendMessage(text, sender) {
+      const container = document.getElementById('messages-container');
+      const bubble = document.createElement('div');
+      bubble.classList.add('message-bubble', sender);
+      bubble.innerText = text;
+      container.appendChild(bubble);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById('message-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendMessage(text, 'me');
+      input.value = '';
+
+      setTimeout(() => {
+        let reply = "No me cambies de tema Nicole.";
+        if (currentContactName.includes('Jake')) {
+          reply = "¿Y por qué te tardas tanto en responder? Seguro estás hablando con él 😠";
+        } else if (currentContactName.includes('Heeseung')) {
+          reply = "Jajaja dile a Jake que se relaje, solo trabajamos en la música.";
+        } else if (currentContactName.includes('Jungwon')) {
+          reply = "Jajaja dile que no sea tan celoso 🐈";
+        }
+        appendMessage(reply, 'them');
+      }, 1000);
+    }
+
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    }
+  </script>
+</body>
+</html>

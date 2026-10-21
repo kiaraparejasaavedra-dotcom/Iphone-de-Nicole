@@ -8,157 +8,266 @@
 </head>
 <body>
   <div class="iphone-container">
-    <!-- Barra de estado -->
+    
+    <!-- BARRA DE ESTADO / DYNAMIC ISLAND -->
     <div class="status-bar">
-      <span class="time">18:58</span>
-      <div class="dynamic-island"></div>
+      <span class="time">18:57</span>
+      <div class="dynamic-island">
+        <button class="nav-btn" onclick="goBack()">‹</button>
+        <button class="nav-btn" onclick="showScreen('home')">🏠</button>
+      </div>
       <div class="icons">
         <span>📶</span>
-        <span class="battery">85%</span>
+        <span>📶</span>
+        <span class="battery">85</span>
       </div>
     </div>
 
-    <!-- PANTALLA 1: MENSAJES -->
-    <div id="view-messages" class="view active">
-      <div class="header">
-        <h1>Mensajes</h1>
+    <!-- PANTALLA 1: HOME SCREEN (PANTALLA DE INICIO) -->
+    <div id="screen-home" class="screen active">
+      <div class="widgets-container">
+        <!-- Widget Clima -->
+        <div class="widget weather-widget">
+          <div class="weather-city">Seúl 📍</div>
+          <div class="weather-temp">8°</div>
+          <div class="weather-desc">☀️ lucidez</div>
+        </div>
+
+        <!-- Widget Calendario -->
+        <div class="widget calendar-widget">
+          <div class="calendar-month">Noviembre</div>
+          <div class="calendar-grid">
+            <span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span>
+            <span></span><span></span><span></span><span></span><span></span><span></span><span>1</span>
+            <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+            <span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span>
+            <span>16</span><span>17</span><span>18</span><span class="today">19</span><span>20</span><span>21</span><span>22</span>
+            <span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
+            <span>30</span>
+          </div>
+        </div>
       </div>
+
+      <!-- Cuadrícula de Aplicaciones -->
+      <div class="apps-grid">
+        <div class="app-item" onclick="showScreen('kakaotalk')">
+          <div class="app-icon kakao-bg">
+            <span>TALK</span>
+            <div class="badge">12</div>
+          </div>
+          <span class="app-label">kakaotalk</span>
+        </div>
+
+        <div class="app-item">
+          <div class="app-icon ai-bg">✨</div>
+          <span class="app-label">cualquier IA</span>
+        </div>
+
+        <div class="app-item">
+          <div class="app-icon gallery-bg">🌸</div>
+          <span class="app-label">imagen</span>
+        </div>
+
+        <div class="app-item" onclick="showScreen('settings')">
+          <div class="app-icon settings-bg">⚙️</div>
+          <span class="app-label">configuración</span>
+        </div>
+      </div>
+
+      <!-- Dock Inferior -->
+      <div class="dock">
+        <div class="app-icon phone-bg" onclick="alert('Llamando a Jake 🖤...')">📞</div>
+        <div class="app-icon messages-bg" onclick="showScreen('kakaotalk')">
+          💬
+          <div class="badge">11</div>
+        </div>
+        <div class="app-icon camera-bg">📷</div>
+        <div class="app-icon safari-bg">🌐</div>
+      </div>
+    </div>
+
+    <!-- PANTALLA 2: CONFIGURACIÓN -->
+    <div id="screen-settings" class="screen">
+      <div class="settings-header">
+        <h1>configuración</h1>
+      </div>
+
+      <div class="profile-card">
+        <img src="fotos/jake-profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'" class="profile-img">
+        <div class="profile-info">
+          <h2>El iPhone de Nicole</h2>
+          <p>Cuenta de Apple, iCloud, etc.</p>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="setting-item">
+          <div class="setting-left">
+            <span class="icon-bg orange">✈️</span>
+            <span>modo avión</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-left">
+            <span class="icon-bg blue">📶</span>
+            <span>Wi-Fi</span>
+          </div>
+          <span class="setting-val">Piano Eterno_5G ›</span>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-left">
+            <span class="icon-bg bluetooth">ᛒ</span>
+            <span>Bluetooth</span>
+          </div>
+          <span class="setting-val">Encender ›</span>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-left">
+            <span class="icon-bg red">🔔</span>
+            <span>alarma</span>
+          </div>
+          <span class="setting-val">›</span>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-left">
+            <span class="icon-bg pink">🔊</span>
+            <span>Sonido y háptica</span>
+          </div>
+          <span class="setting-val">›</span>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-left">
+            <span class="icon-bg purple">🌙</span>
+            <span>Modo de enfoque</span>
+          </div>
+          <span class="setting-val">›</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANTALLA 3: KAKAOTALK (CHARLAR) -->
+    <div id="screen-kakaotalk" class="screen">
+      <div class="kakao-header">
+        <h1>Charlar</h1>
+        <div class="kakao-actions">
+          <span>🔍</span>
+          <span>💬⁺</span>
+          <span>⚙️</span>
+        </div>
+      </div>
+
       <div class="chat-list">
         <!-- Jake -->
-        <div class="chat-item" onclick="openChat('Jake 🖤', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150', [
-          { sender: 'them', text: '¿Dónde estás? Quedamos en que me avisabas cuando llegaras.' },
-          { sender: 'them', text: 'Vi que Heeseung te comentó la foto... ¿por qué le diste me gusta?' },
+        <div class="chat-item" onclick="openChat('Jake 🖤', 'fotos/jake-profile.jpg', [
+          { sender: 'them', text: '¿Dónde estás Nicole? Quedamos en que me avisabas al llegar.' },
+          { sender: 'them', text: 'Vi que Heeseung te comentó... ¿por qué le diste me gusta?' },
           { sender: 'me', text: 'Jake, tranquilízate, es solo un amigo.' },
-          { sender: 'them', text: 'No me importa Nicole, no quiero que te juntes a solas con él.' }
+          { sender: 'them', text: 'No me importa, no quiero que te juntes a solas con él. Respóndeme ya 😠' }
         ])">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" class="avatar-img" alt="Jake">
+          <img src="fotos/jake-profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'" class="avatar-img">
           <div class="chat-info">
             <div class="chat-header">
               <span class="name">Jake 🖤</span>
-              <span class="date">Ahora</span>
+              <span class="date">18:57</span>
             </div>
-            <p class="last-message">No me importa Nicole, no quiero que...</p>
+            <p class="last-message">No me importa, no quiero que te juntes...</p>
           </div>
+          <div class="chat-badge">2</div>
         </div>
 
         <!-- Heeseung -->
-        <div class="chat-item" onclick="openChat('Heeseung 🎧', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150', [
+        <div class="chat-item" onclick="openChat('Heeseung 🎧', 'fotos/heeseung-profile.jpg', [
           { sender: 'them', text: 'Hola Nicole, ¿pudiste revisar el audio?' },
           { sender: 'me', text: '¡Sí! Quedó genial. Oye, Jake está súper celoso jajaja.' },
           { sender: 'them', text: 'Uff, otra vez... dile que solo estamos trabajando en la música.' }
         ])">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" class="avatar-img" alt="Heeseung">
+          <img src="fotos/heeseung-profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150'" class="avatar-img">
           <div class="chat-info">
             <div class="chat-header">
               <span class="name">Heeseung 🎧</span>
-              <span class="date">18:30</span>
+              <span class="date">18:57</span>
             </div>
             <p class="last-message">Uff, otra vez... dile que solo estamos...</p>
           </div>
         </div>
 
         <!-- Jungwon -->
-        <div class="chat-item" onclick="openChat('Jungwon 🐈', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150', [
+        <div class="chat-item" onclick="openChat('Jungwon 🐈', 'fotos/jungwon-profile.jpg', [
           { sender: 'them', text: '¿Sigue Jake molestando por lo de Heeseung?' },
-          { sender: 'me', text: 'Sí, está super intenso hoy, no me deja en paz jajaja.' },
-          { sender: 'them', text: 'Ay Nicole, ya sabes cómo es de celoso cuando se trata de ti 🤦‍♂️' }
+          { sender: 'me', text: 'Sí, está super intenso hoy jajaja.' },
+          { sender: 'them', text: 'Ay Nicole, ya sabes cómo se pone de celoso contigo 🤦‍♂️' }
         ])">
-          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150" class="avatar-img" alt="Jungwon">
+          <img src="fotos/jungwon-profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150'" class="avatar-img">
           <div class="chat-info">
             <div class="chat-header">
               <span class="name">Jungwon 🐈</span>
-              <span class="date">12:15</span>
+              <span class="date">16 nov</span>
             </div>
-            <p class="last-message">Ay Nicole, ya sabes cómo es de celoso cuando...</p>
+            <p class="last-message">Ay Nicole, ya sabes cómo se pone de...</p>
           </div>
         </div>
       </div>
+
+      <!-- Nav Kakao -->
+      <div class="kakao-nav">
+        <span>👤</span>
+        <span class="active">💬<div class="dot">12</div></span>
+        <span>✨</span>
+        <span>🛍️</span>
+        <span>•••</span>
+      </div>
     </div>
 
-    <!-- PANTALLA 2: CONVERSACIÓN ABIERTA -->
-    <div id="view-chat" class="view">
+    <!-- PANTALLA 4: CHAT ABIERTO -->
+    <div id="screen-chat" class="screen">
       <div class="chat-navbar">
-        <button class="back-btn" onclick="switchView('view-messages')">‹ Mensajes</button>
-        <div class="contact-profile">
-          <img id="chat-avatar" src="" alt="Avatar">
-          <span id="chat-title" class="contact-name"></span>
-        </div>
+        <button class="back-btn" onclick="showScreen('kakaotalk')">‹ Charlar</button>
+        <span id="chat-title" class="contact-name"></span>
       </div>
       <div class="messages-container" id="messages-container"></div>
       <div class="chat-input-bar">
-        <input type="text" id="message-input" placeholder="iMessage" onkeypress="handleKeyPress(event)">
+        <input type="text" id="message-input" placeholder="Escribe un mensaje..." onkeypress="handleKeyPress(event)">
         <button class="send-btn" onclick="sendMessage()">⬆</button>
       </div>
     </div>
 
-    <!-- PANTALLA 3: TELÉFONO / LLAMADAS -->
-    <div id="view-phone" class="view">
-      <div class="header">
-        <h1>Teléfono</h1>
-      </div>
-      <div class="phone-display">
-        <span id="phone-number"></span>
-      </div>
-      <div class="keypad">
-        <div class="key" onclick="pressKey('1')">1</div>
-        <div class="key" onclick="pressKey('2')">2</div>
-        <div class="key" onclick="pressKey('3')">3</div>
-        <div class="key" onclick="pressKey('4')">4</div>
-        <div class="key" onclick="pressKey('5')">5</div>
-        <div class="key" onclick="pressKey('6')">6</div>
-        <div class="key" onclick="pressKey('7')">7</div>
-        <div class="key" onclick="pressKey('8')">8</div>
-        <div class="key" onclick="pressKey('9')">9</div>
-        <div class="key" onclick="pressKey('*')">*</div>
-        <div class="key" onclick="pressKey('0')">0</div>
-        <div class="key" onclick="pressKey('#')">#</div>
-      </div>
-      <div class="call-action">
-        <button class="call-btn" onclick="makeCall()">📞</button>
-      </div>
-    </div>
-
-    <!-- PANTALLA DE LLAMADA EN CURSO -->
-    <div id="view-calling" class="view call-screen">
-      <div class="caller-info">
-        <img id="caller-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150" alt="Caller">
-        <h2 id="caller-name">Jake 🖤</h2>
-        <p id="call-status">Llamando...</p>
-      </div>
-      <div class="call-controls">
-        <button class="end-call-btn" onclick="endCall()">📵</button>
-      </div>
-    </div>
-
-    <!-- BARRA INFERIOR DE NAVEGACIÓN -->
-    <div class="tab-bar">
-      <button class="tab-item" onclick="switchView('view-phone')">
-        <span class="tab-icon">📞</span>
-        <span class="tab-label">Teléfono</span>
-      </button>
-      <button class="tab-item active" onclick="switchView('view-messages')">
-        <span class="tab-icon">💬</span>
-        <span class="tab-label">Mensajes</span>
-      </button>
-    </div>
-
-    <div class="home-indicator"></div>
+    <div class="home-bar" onclick="showScreen('home')"></div>
   </div>
 
   <script>
+    let historyScreens = ['home'];
     let currentContactName = '';
-    let dialedNumber = '';
 
-    function switchView(viewId) {
-      document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-      document.getElementById(viewId).classList.add('active');
+    function showScreen(screenId) {
+      if (historyScreens[historyScreens.length - 1] !== screenId) {
+        historyScreens.push(screenId);
+      }
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      document.getElementById('screen-' + screenId).classList.add('active');
+    }
+
+    function goBack() {
+      if (historyScreens.length > 1) {
+        historyScreens.pop();
+        const prev = historyScreens[historyScreens.length - 1];
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById('screen-' + prev).classList.add('active');
+      }
     }
 
     function openChat(name, photo, messages) {
       currentContactName = name;
-      switchView('view-chat');
+      showScreen('chat');
       document.getElementById('chat-title').innerText = name;
-      document.getElementById('chat-avatar').src = photo;
 
       const container = document.getElementById('messages-container');
       container.innerHTML = '';
@@ -178,15 +287,16 @@
       const input = document.getElementById('message-input');
       const text = input.value.trim();
       if (!text) return;
+
       appendMessage(text, 'me');
       input.value = '';
 
       setTimeout(() => {
         let reply = "No me cambies de tema Nicole.";
         if (currentContactName.includes('Jake')) {
-          reply = "¿Y por qué te tardas tanto en responder? Seguro estás con él 😠";
+          reply = "¿Y por qué te tardas tanto en responder? Seguro estás hablando con él 😠";
         } else if (currentContactName.includes('Heeseung')) {
-          reply = "Dile a Jake que se relaje, solo somos amigos.";
+          reply = "Jajaja dile a Jake que se relaje, solo trabajamos en la música.";
         } else if (currentContactName.includes('Jungwon')) {
           reply = "Jajaja dile que no sea tan celoso 🐈";
         }
@@ -196,27 +306,6 @@
 
     function handleKeyPress(e) {
       if (e.key === 'Enter') sendMessage();
-    }
-
-    function pressKey(num) {
-      dialedNumber += num;
-      document.getElementById('phone-number').innerText = dialedNumber;
-    }
-
-    function makeCall() {
-      switchView('view-calling');
-      document.getElementById('caller-name').innerText = dialedNumber || 'Jake 🖤';
-      document.getElementById('call-status').innerText = 'Llamando...';
-
-      setTimeout(() => {
-        document.getElementById('call-status').innerText = '00:01 - ¡Hola Nicole! ¿Por qué llamas?';
-      }, 2000);
-    }
-
-    function endCall() {
-      dialedNumber = '';
-      document.getElementById('phone-number').innerText = '';
-      switchView('view-phone');
     }
   </script>
 </body>

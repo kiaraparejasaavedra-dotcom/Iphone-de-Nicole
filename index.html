@@ -149,7 +149,7 @@
       </div>
     </div>
 
-    <!-- PANTALLA 1: HOME SCREEN (PANTALLA DE INICIO) -->
+    <!-- PANTALLA 1: HOME SCREEN -->
     <div id="screen-home" class="screen active">
       <div class="widgets-container">
         <!-- Widget Clima -->
@@ -219,7 +219,7 @@
       </div>
 
       <div class="profile-card">
-        <img src="fotos/jake-profile.jpg" onerror="this.src= https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300 class="profile-img">
+        <img src="https://i.pinimg.com/736x/5f/8d/71/5f8d7168c1300957fa4fa8211a7a01d6.jpg" class="profile-img">
         <div class="profile-info">
           <h2>El iPhone de Nicole</h2>
           <p>Cuenta de Apple, iCloud, etc.</p>
@@ -267,172 +267,4 @@
             <span class="icon-bg pink">🔊</span>
             <span>Sonido y háptica</span>
           </div>
-          <span class="setting-val">›</span>
-        </div>
-
-        <div class="setting-item">
-          <div class="setting-left">
-            <span class="icon-bg purple">🌙</span>
-            <span>Modo de enfoque</span>
-          </div>
-          <span class="setting-val">›</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- PANTALLA 3: KAKAOTALK (CHARLAR) -->
-    <div id="screen-kakaotalk" class="screen">
-      <div class="kakao-header">
-        <h1>Charlar</h1>
-        <div class="kakao-actions">
-          <span>🔍</span>
-          <span>💬⁺</span>
-          <span>⚙️</span>
-        </div>
-      </div>
-
-      <div class="chat-list">
-        <!-- Jake -->
-        <div class="chat-item" onclick="openChat('Jake 🖤',https://i.pinimg.com/736x/33/6c/7a/336c7a4b6d5eb3928e0c625199e34fff.jpg , [
-          { sender: 'them', text: '¿Dónde estás Nicole? Quedamos en que me avisabas al llegar.' },
-          { sender: 'them', text: 'Vi que Heeseung te comentó... ¿por qué le diste me gusta?' },
-          { sender: 'me', text: 'Jake, tranquilízate, es solo un amigo.' },
-          { sender: 'them', text: 'No me importa, no quiero que te juntes a solas con él. Respóndeme ya 😠' }
-        ])">
-          <img src="fotos/jake-profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150'" class="avatar-img">
-          <div class="chat-info">
-            <div class="chat-header">
-              <span class="name">Jake 🖤</span>
-              <span class="date">18:57</span>
-            </div>
-            <p class="last-message">No me importa, no quiero que te juntes...</p>
-          </div>
-          <div class="chat-badge">2</div>
-        </div>
-
-        <!-- Heeseung -->
-        <div class="chat-item" onclick="openChat('Heeseung 🎧', 'fotos/heeseung-profile.jpg', [
-          { sender: 'them', text: 'Hola Nicole, ¿pudiste revisar el audio?' },
-          { sender: 'me', text: '¡Sí! Quedó genial. Oye, Jake está súper celoso jajaja.' },
-          { sender: 'them', text: 'Uff, otra vez... dile que solo estamos trabajando en la música.' }
-        ])">
-          <img src="fotos/heeseung-profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150'" class="avatar-img">
-          <div class="chat-info">
-            <div class="chat-header">
-              <span class="name">Heeseung 🎧</span>
-              <span class="date">18:57</span>
-            </div>
-            <p class="last-message">Uff, otra vez... dile que solo estamos...</p>
-          </div>
-        </div>
-
-        <!-- Jungwon -->
-        <div class="chat-item" onclick="openChat('Jungwon 🐈', 'fotos/jungwon-profile.jpg', [
-          { sender: 'them', text: '¿Sigue Jake molestando por lo de Heeseung?' },
-          { sender: 'me', text: 'Sí, está super intenso hoy jajaja.' },
-          { sender: 'them', text: 'Ay Nicole, ya sabes cómo se pone de celoso contigo 🤦‍♂️' }
-        ])">
-          <img src="fotos/jungwon-profile.jpg" onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150'" class="avatar-img">
-          <div class="chat-info">
-            <div class="chat-header">
-              <span class="name">Jungwon 🐈</span>
-              <span class="date">16 nov</span>
-            </div>
-            <p class="last-message">Ay Nicole, ya sabes cómo se pone de...</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Nav Kakao -->
-      <div class="kakao-nav">
-        <span>👤</span>
-        <span class="active">💬<div class="dot">12</div></span>
-        <span>✨</span>
-        <span>🛍️</span>
-        <span>•••</span>
-      </div>
-    </div>
-
-    <!-- PANTALLA 4: CHAT ABIERTO -->
-    <div id="screen-chat" class="screen">
-      <div class="chat-navbar">
-        <button class="back-btn" onclick="showScreen('kakaotalk')">‹ Charlar</button>
-        <span id="chat-title" class="contact-name"></span>
-      </div>
-      <div class="messages-container" id="messages-container"></div>
-      <div class="chat-input-bar">
-        <input type="text" id="message-input" placeholder="Escribe un mensaje..." onkeypress="handleKeyPress(event)">
-        <button class="send-btn" onclick="sendMessage()">⬆</button>
-      </div>
-    </div>
-
-    <div class="home-bar" onclick="showScreen('home')"></div>
-  </div>
-
-  <script>
-    let historyScreens = ['home'];
-    let currentContactName = '';
-
-    function showScreen(screenId) {
-      if (historyScreens[historyScreens.length - 1] !== screenId) {
-        historyScreens.push(screenId);
-      }
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById('screen-' + screenId).classList.add('active');
-    }
-
-    function goBack() {
-      if (historyScreens.length > 1) {
-        historyScreens.pop();
-        const prev = historyScreens[historyScreens.length - 1];
-        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.getElementById('screen-' + prev).classList.add('active');
-      }
-    }
-
-    function openChat(name, photo, messages) {
-      currentContactName = name;
-      showScreen('chat');
-      document.getElementById('chat-title').innerText = name;
-
-      const container = document.getElementById('messages-container');
-      container.innerHTML = '';
-      messages.forEach(msg => appendMessage(msg.text, msg.sender));
-    }
-
-    function appendMessage(text, sender) {
-      const container = document.getElementById('messages-container');
-      const bubble = document.createElement('div');
-      bubble.classList.add('message-bubble', sender);
-      bubble.innerText = text;
-      container.appendChild(bubble);
-      container.scrollTop = container.scrollHeight;
-    }
-
-    function sendMessage() {
-      const input = document.getElementById('message-input');
-      const text = input.value.trim();
-      if (!text) return;
-
-      appendMessage(text, 'me');
-      input.value = '';
-
-      setTimeout(() => {
-        let reply = "No me cambies de tema Nicole.";
-        if (currentContactName.includes('Jake')) {
-          reply = "¿Y por qué te tardas tanto en responder? Seguro estás hablando con él 😠";
-        } else if (currentContactName.includes('Heeseung')) {
-          reply = "Jajaja dile a Jake que se relaje, solo trabajamos en la música.";
-        } else if (currentContactName.includes('Jungwon')) {
-          reply = "Jajaja dile que no sea tan celoso 🐈";
-        }
-        appendMessage(reply, 'them');
-      }, 1000);
-    }
-
-    function handleKeyPress(e) {
-      if (e.key === 'Enter') sendMessage();
-    }
-  </script>
-</body>
-</html>
+          <span
